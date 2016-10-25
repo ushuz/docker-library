@@ -9,6 +9,6 @@ RUN set -ex \
     && pip install --no-cache-dir mycli==$MYCLI_VERSION \
     && apk del --purge .build-deps
 
-ENTRYPOINT ['mycli']
+ENTRYPOINT ["mycli"]
 
-CMD ['--help']
+CMD ["--help"]
