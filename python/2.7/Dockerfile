@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-MAINTAINER John Hu <hszqqq12@gmail.com>
-
 RUN set -ex \
     && fetchDeps='openssl' \
     && apk add --no-cache $fetchDeps python \

@@ -1,7 +1,5 @@
 FROM ushuz/python:2
 
-MAINTAINER John Hu <hszqqq12@gmail.com>
-
 ARG MYCLI_VERSION=1.8.1
 
 RUN set -ex \

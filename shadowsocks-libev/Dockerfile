@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-MAINTAINER John Hu <hszqqq12@gmail.com>
-
 ARG SS_VER=2.5.6
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
 ARG SS_DIR=shadowsocks-libev-$SS_VER
