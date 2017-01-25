@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.5
 
 ARG SS_VER=2.5.6
 ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
