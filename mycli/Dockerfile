@@ -1,6 +1,6 @@
-FROM ushuz/python:2
+FROM python:2-alpine
 
-ARG MYCLI_VERSION=1.10.0
+ARG MYCLI_VERSION=1.16.0
 
 RUN set -ex \
     && apk add --no-cache less \
