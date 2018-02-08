@@ -1,7 +1,7 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
-ARG SS_VER=2.5.6
-ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/archive/v$SS_VER.tar.gz
+ARG SS_VER=3.1.3
+ARG SS_URL=https://github.com/shadowsocks/shadowsocks-libev/releases/download/v$SS_VER/shadowsocks-libev-$SS_VER.tar.gz
 ARG SS_DIR=shadowsocks-libev-$SS_VER
 
 RUN set -ex \
@@ -10,15 +10,15 @@ RUN set -ex \
         openssl \
     && apk add --virtual .build-deps \
         build-base \
+        c-ares-dev \
         libev-dev \
         libsodium-dev \
         linux-headers \
-        openssl-dev \
+        mbedtls-dev \
         pcre-dev \
-        udns-dev \
     && wget -O - $SS_URL | tar xz \
     && cd $SS_DIR \
-        && ./configure --enable-system-shared-lib --disable-documentation \
+        && ./configure --disable-documentation \
         && make install \
         && cd .. \
     && runDeps="$( \
@@ -38,7 +38,7 @@ ENV METHOD      aes-256-cfb
 ENV TIMEOUT     300
 ENV DNS_ADDR    8.8.8.8
 
-EXPOSE $SERVER_PORT
+EXPOSE 80 443
 
 CMD ss-server -s $SERVER_ADDR \
               -p $SERVER_PORT \
