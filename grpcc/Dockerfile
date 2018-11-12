@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:10-alpine
 
 ARG GRPCC_VERSION=1.1.3
 
