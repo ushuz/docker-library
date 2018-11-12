@@ -1,6 +1,6 @@
 FROM python:alpine
 
-ARG MYCLI_VERSION=1.16.0
+ARG MYCLI_VERSION=1.18.2
 
 RUN set -ex \
     && apk add --no-cache less \
