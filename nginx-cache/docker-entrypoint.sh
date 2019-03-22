@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# ensure $FETCH_UPSTREAM env
-if [ -z $FETCH_UPSTREAM ]; then
-    echo 'nginx-cache: $FETCH_UPSTREAM cannot be empty'
+# read fetch-upstream input
+if [ -z $1 ]; then
+    echo 'nginx-cache: fetch-upstream not specified'
     exit 1
 fi
 
 # render upstream into nginx config
-sed -i "s|{{ fetch-upstream }}|$FETCH_UPSTREAM|g" /etc/nginx/nginx.conf
+sed -i "s|{{ fetch-upstream }}|$1|g" /etc/nginx/nginx.conf
 
 # ensure data volume ownership
 chown -R nginx:nginx /data/fetch-cache
 
-exec "$@"
+# start nginx
+exec nginx -g 'daemon off;'
