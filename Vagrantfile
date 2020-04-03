@@ -11,7 +11,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/bionic64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -29,8 +29,8 @@ Vagrant.configure("2") do |config|
   # config.vm.synced_folder "../data", "/vagrant_data"
 
   # The hostname the machine should have.
-  config.vm.hostname = "docker-xenial-1912"
-  config.vm.define "docker-xenial-1912"
+  config.vm.hostname = "docker-bionic-2004"
+  config.vm.define "docker-bionic-2004"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -38,7 +38,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
     # VM name
-    vb.name = "docker-xenial-1912"
+    vb.name = "docker-bionic-2004"
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
   end
@@ -70,10 +70,10 @@ export https_proxy=http://10.0.2.2:6152
 # download / install
 for pkg in \
   containerd.io_1.2.6-3_amd64.deb \
-  docker-ce-cli_19.03.5~3-0~ubuntu-xenial_amd64.deb \
-  docker-ce_19.03.5~3-0~ubuntu-xenial_amd64.deb \
+  docker-ce-cli_19.03.8~3-0~ubuntu-bionic_amd64.deb \
+  docker-ce_19.03.8~3-0~ubuntu-bionic_amd64.deb \
 ; do
-  [ ! -f $pkg ] && curl -fsSLO https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/amd64/$pkg || :
+  [ ! -f $pkg ] && curl -fsSLO https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/$pkg || :
   dpkg -Ei $pkg
 done
 
@@ -86,6 +86,7 @@ usermod -aG docker vagrant
 tee /etc/docker/daemon.json > /dev/null <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
+  "experimental": true,
   "hosts": [
     "unix://",
     "tcp://0.0.0.0:2375"
