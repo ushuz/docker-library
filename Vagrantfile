@@ -32,6 +32,9 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "docker-bionic-2004"
   config.vm.define "docker-bionic-2004"
 
+  # Shared folders
+  config.vm.synced_folder "/Users/ushuz/go", "/Users/ushuz/go"
+
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
