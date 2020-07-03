@@ -33,6 +33,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "docker-bionic-2004"
 
   # Shared folders
+  config.vm.synced_folder "/Users/ushuz/Code", "/Users/ushuz/Code"
   config.vm.synced_folder "/Users/ushuz/go", "/Users/ushuz/go"
 
   # Provider-specific configuration so you can fine-tune various
