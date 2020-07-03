@@ -7,4 +7,4 @@ mycli: VERSION ?= 1.18.2
 mycli:
 	docker build mycli/ --build-arg MYCLI_VERSION=$(VERSION) -t ushuz/mycli:$(VERSION) -t ushuz/mycli:latest
 
-.PHONY: clash grpcc mycli
+.PHONY: grpcc mycli
