@@ -118,11 +118,11 @@ tee /etc/systemd/system/docker.service.d/start.conf > /dev/null <<EOF
 ExecStart=
 ExecStart=/usr/bin/dockerd
 EOF
-# let daemon use proxy
-tee /etc/systemd/system/docker.service.d/proxy.conf > /dev/null <<EOF
-[Service]
-Environment="HTTP_PROXY=${http_proxy}" "HTTPS_PROXY=${https_proxy}"
-EOF
+# # let daemon use proxy
+# tee /etc/systemd/system/docker.service.d/proxy.conf > /dev/null <<EOF
+# [Service]
+# Environment="HTTP_PROXY=${http_proxy}" "HTTPS_PROXY=${https_proxy}"
+# EOF
 
 systemctl daemon-reload
 systemctl restart docker
