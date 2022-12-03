@@ -1,0 +1,52 @@
+{{- if .Values.mastodon.createAdmin.enabled -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "mastodon.fullname" . }}-create-admin
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "-1"
+spec:
+  template:
+    metadata:
+      name: {{ include "mastodon.fullname" . }}-create-admin
+      {{- with .Values.jobAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: postgres-root-ca
+          secret:
+            secretName: {{ template "mastodon.postgresql.fullname" . }}
+            optional: yes
+      containers:
+        - name: {{ include "mastodon.fullname" . }}-create-admin
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - bin/tootctl
+            - accounts
+            - create
+            - {{ .Values.mastodon.createAdmin.username }}
+            - --email
+            - {{ .Values.mastodon.createAdmin.email }}
+            - --confirmed
+            - --role
+            - admin
+          envFrom:
+            - configMapRef:
+                name: {{ include "mastodon.fullname" . }}-env
+            - secretRef:
+                name: {{ template "mastodon.secretName" . }}
+          env:
+            - name: "PORT"
+              value: {{ .Values.mastodon.web.port | quote }}
+          volumeMounts:
+            - name: postgres-root-ca
+              mountPath: /opt/mastodon/.postgresql
+{{- end }}

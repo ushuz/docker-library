@@ -1,0 +1,45 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "mastodon.fullname" . }}-db-setup
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+    "helm.sh/hook-weight": "-2"
+spec:
+  template:
+    metadata:
+      name: {{ include "mastodon.fullname" . }}-db-setup
+      {{- with .Values.jobAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      restartPolicy: Never
+      volumes:
+        - name: postgres-root-ca
+          secret:
+            secretName: {{ template "mastodon.postgresql.fullname" . }}
+            optional: yes
+      containers:
+        - name: {{ include "mastodon.fullname" . }}-db-setup
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command:
+            - bundle
+            - exec
+            - rake
+            - db:setup
+          envFrom:
+            - configMapRef:
+                name: {{ include "mastodon.fullname" . }}-env
+            - secretRef:
+                name: {{ template "mastodon.secretName" . }}
+          env:
+            - name: "PORT"
+              value: {{ .Values.mastodon.web.port | quote }}
+          volumeMounts:
+            - name: postgres-root-ca
+              mountPath: /opt/mastodon/.postgresql
