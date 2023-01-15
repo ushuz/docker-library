@@ -48,6 +48,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "mastodon.fullname" . }}-env
+            - secretRef:
+                name: {{ template "mastodon.secretName" . }}
           env:
             - name: "PORT"
               value: {{ .Values.mastodon.streaming.port | quote }}
