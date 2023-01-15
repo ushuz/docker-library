@@ -14,10 +14,10 @@ Copy `values.example.yaml` into `values.yaml` and customize.
 helm dep update
 
 # install chart
-helm install mastodon ./ -f path/to/values.yaml --namespace mastodon --create-namespace
+helm install mastodon ./ -f values.yaml --namespace mastodon --create-namespace
 
 # upgrade chart
-helm upgrade --namespace mastodon mastodon ./ -f path/to/values.yaml
+helm upgrade mastodon ./ -f values.yaml --namespace mastodon
 ```
 
 
@@ -46,13 +46,8 @@ Ideal for a tiny Mastodon instance that typically serves less than 5 users.
 ##### Hosted Database
 
 - [Supabase](https://supabase.com/pricing) Free plan offers fully functional PostgreSQL databases with up to 500MB storage
-- [Neon](https://neon.tech/docs/introduction/technical-preview-free-tier/) Technical Preview offers serverless PostgreSQL databases with up to 10GB storage, paid tiers are expected to launch in Q1 2023
+- [Neon](https://neon.tech/docs/introduction/technical-preview-free-tier/) Technical Preview offers serverless PostgreSQL databases with up to 3GB storage, paid tiers are expected to launch in Q1 2023
 
 ##### Image Hosting
 
-Lots of S3-compatible storage providers offer free storage quota, but few like [Cloudflare R2](https://developers.cloudflare.com/r2/platform/pricing/) offers free traffic. However, Cloudflare R2 doesn't support S3 ACL feature, so we have to tweak the Ruby library used by Mastodon to upload files to S3 a bit, like what I did in Dockerfile:
-
-```Dockerfile
-# disable s3 acl to make it compatibible w/ cloudflare r2
-RUN sed -i'' '/acl:/d' /opt/mastodon/vendor/bundle/ruby/3.0.0/gems/kt-paperclip-7.1.1/lib/paperclip/storage/s3.rb
-```
+Lots of S3-compatible storage providers offer free storage quota, but few like [Cloudflare R2](https://developers.cloudflare.com/r2/platform/pricing/) offers free traffic.
