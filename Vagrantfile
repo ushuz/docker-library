@@ -31,6 +31,9 @@ Vagrant.configure("2") do |config|
   # The hostname the machine should have.
   config.vm.hostname = "docker-jammy-2302"
 
+  # VM name in vagrant
+  config.vm.define config.vm.hostname
+
   # Mount shared folders.
   config.vm.synced_folder "/Users/ushuz/Code", "/Users/ushuz/Code"
   config.vm.synced_folder "/Users/ushuz/Downloads", "/Users/ushuz/Downloads"
@@ -45,7 +48,7 @@ Vagrant.configure("2") do |config|
   # Example for VirtualBox:
 
   config.vm.provider "virtualbox" do |vb|
-    # VM name
+    # VM name in virtualbox
     vb.name = config.vm.hostname
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
