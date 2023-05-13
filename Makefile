@@ -11,7 +11,9 @@ halbot:
 
 mastodon: VERSION ?= 3.5.3
 mastodon:
-	docker buildx build mastodon/ --build-arg MASTODON_VERSION=$(VERSION) -t ushuz/mastodon:$(VERSION) --platform linux/amd64,linux/arm64 --push
+	docker builder use multiarch
+	docker build mastodon/ --build-arg MASTODON_VERSION=$(VERSION) -t ushuz/mastodon:$(VERSION) --platform linux/amd64,linux/arm64 --push
+	docker builder use default
 
 mycli: VERSION ?= 1.18.2
 mycli:
