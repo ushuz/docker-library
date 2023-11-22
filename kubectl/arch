@@ -1,0 +1,14 @@
+UNAME=$(uname --machine)
+
+case $UNAME in
+    x86_64)
+        export ARCH=amd64
+        ;;
+    aarch64)
+        export ARCH=arm64
+        ;;
+    *)
+        echo "unsupported architecture: $UNAME"
+        exit 1
+        ;;
+esac
