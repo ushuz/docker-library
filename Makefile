@@ -12,7 +12,7 @@ halbot:
 kubectl: VERSION ?= 1.28.4
 kubectl:
 	docker builder use multiarch
-	docker build kubectl/ --build-arg KUBECTL_VERSION=$(VERSION) -t ushuz/kubectl:$(VERSION) --platform linux/amd64,linux/arm64 --push
+	docker build kubectl/ --build-arg KUBECTL_VERSION=v$(VERSION) -t ushuz/kubectl:$(VERSION) --platform linux/amd64,linux/arm64 --push
 	docker builder use default
 
 mastodon: VERSION ?= 3.5.3
