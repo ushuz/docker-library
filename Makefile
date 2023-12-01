@@ -25,4 +25,8 @@ mycli: VERSION ?= 1.18.2
 mycli:
 	docker build mycli/ --build-arg MYCLI_VERSION=$(VERSION) -t ushuz/mycli:$(VERSION) -t ushuz/mycli:latest
 
-.PHONY: grpcc halbot kubectl mastodon mycli
+pgcli: VERSION ?= 4.0.1
+pgcli:
+	docker build pgcli/ --build-arg PGCLI_VERSION=$(VERSION) -t ushuz/pgcli:$(VERSION) -t ushuz/pgcli:latest
+
+.PHONY: grpcc halbot kubectl mastodon mycli pgcli
