@@ -1,5 +1,13 @@
-ARG MASTODON_VERSION=3.5.3
+ARG MASTODON_VERSION=3.5.19
 FROM tootsuite/mastodon:v${MASTODON_VERSION}
 
-# disable s3 acl to make it compatibible w/ cloudflare r2
-RUN sed -i'' '/acl:/d' /opt/mastodon/vendor/bundle/ruby/3.0.0/gems/kt-paperclip-7.1.1/lib/paperclip/storage/s3.rb
+USER root
+RUN mkdir -p /var/cache/apt/archives/partial && \
+    apt update && \
+    apt install -y --no-install-recommends patch && \
+    rm -fr /var/cache/
+
+USER mastodon
+ADD patches /patches
+RUN /usr/bin/patch -p0 < /patches/001-media_attachment.patch
+RUN /usr/bin/patch -p0 < /patches/002-media_attachment_serializer.patch

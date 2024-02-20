@@ -1,0 +1,15 @@
+diff --git a/app/models/media_attachment.rb b/app/models/media_attachment.rb
+--- app/models/media_attachment.rb
++++ app/models/media_attachment.rb
+@@ -205,9 +205,10 @@
+     processing.present? && !processing_complete?
+   end
+
+   def needs_redownload?
+-    file.blank? && remote_url.present?
++    # file.blank? && remote_url.present?
++    false
+   end
+
+   def significantly_changed?
+     description_previously_changed? || thumbnail_updated_at_previously_changed? || file_meta_previously_changed?
