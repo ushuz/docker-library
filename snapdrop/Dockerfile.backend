@@ -1,0 +1,6 @@
+# syntax=docker/dockerfile:1
+FROM node:alpine
+ADD --keep-git-dir=true "https://github.com/ushuz/snapdrop.git#master:server" /app
+WORKDIR /app
+RUN npm install
+CMD ["node", "index.js"]
