@@ -45,8 +45,9 @@ Ideal for a tiny Mastodon instance that typically serves less than 5 users.
 
 ##### Hosted Database
 
-- [Supabase](https://supabase.com/pricing) Free plan offers fully functional PostgreSQL databases with up to 500MB storage
-- [Neon](https://neon.tech/docs/introduction/technical-preview-free-tier/) Technical Preview offers serverless PostgreSQL databases with up to 3GB storage, paid tiers are expected to launch in Q1 2023
+- [Supabase](https://supabase.com/pricing) free plan offers fully functional PostgreSQL databases with storage up to 500MB
+- [Neon](https://neon.tech/pricing) free plan offers serverless PostgreSQL databases with storage up to 0.5GiB
+- [Xata](https://xata.io/pricing) free plan offers serverless PostgreSQL databases with storage up to 15GiB
 
 ##### Image Hosting
 
