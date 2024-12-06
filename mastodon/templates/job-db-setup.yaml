@@ -30,7 +30,7 @@ spec:
           command:
             - bundle
             - exec
-            - rake
+            - rails
             - db:setup
           envFrom:
             - configMapRef:
