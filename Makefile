@@ -15,12 +15,6 @@ kubectl:
 	docker build kubectl/ --build-arg KUBECTL_VERSION=v$(VERSION) -t ushuz/kubectl:$(VERSION) --platform linux/amd64,linux/arm64 --push
 	docker builder use default
 
-mastodon: VERSION ?= 3.5.3
-mastodon:
-	docker builder use multiarch
-	docker build mastodon/ --build-arg MASTODON_VERSION=$(VERSION) -t ushuz/mastodon:$(VERSION) --platform linux/amd64,linux/arm64 --push
-	docker builder use default
-
 mycli: VERSION ?= 1.18.2
 mycli:
 	docker build mycli/ --build-arg MYCLI_VERSION=$(VERSION) -t ushuz/mycli:$(VERSION) -t ushuz/mycli:latest
