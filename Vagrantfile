@@ -37,7 +37,6 @@ Vagrant.configure("2") do |config|
   # Mount shared folders.
   config.vm.synced_folder "/Users/ushuz/Code", "/Users/ushuz/Code"
   config.vm.synced_folder "/Users/ushuz/Downloads", "/Users/ushuz/Downloads"
-  config.vm.synced_folder "/Users/ushuz/go", "/Users/ushuz/go"
 
   # # Resize primary disk. This is an experimental feature that requires a
   # # flag, see: https://www.vagrantup.com/docs/disks/usage
