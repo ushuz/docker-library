@@ -23,7 +23,14 @@ data:
   MALLOC_ARENA_MAX: "2"
   NODE_ENV: "production"
   RAILS_ENV: "production"
-  REDIS_URL: redis://{{ template "mastodon.redis.fullname" . }}:6379
+  {{- if not .Values.redis.externalURL }}
+  REDIS_URL: redis://{{ template "mastodon.redis.fullname" . }}:6379/0
+  {{- else }}
+  REDIS_URL: {{ .Values.redis.externalURL }}
+  {{- end }}
+  {{- if .Values.redis.driver }}
+  REDIS_DRIVER: {{ .Values.redis.driver }}
+  {{- end }}
   {{- if .Values.mastodon.s3.enabled }}
   S3_BUCKET: {{ .Values.mastodon.s3.bucket }}
   S3_ENABLED: "true"

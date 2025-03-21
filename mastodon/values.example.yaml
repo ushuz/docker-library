@@ -116,6 +116,11 @@ postgresql:
       xxx
       -----END CERTIFICATE-----
 
+redis:
+  # URL to connect to an external Redis instance
+  # if this is set, it will disable the Redis deployment
+  externalURL:
+
 service:
   type: ClusterIP
   port: 80
