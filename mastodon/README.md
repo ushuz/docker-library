@@ -43,11 +43,15 @@ Ideal for a tiny Mastodon instance that typically serves less than 5 users.
 
 [Oracle Cloud](https://www.oracle.com/ca-en/cloud/free/#always-free) Always Free tier offers ample computing power, together with [Oracle Kubernetes Engine](https://www.oracle.com/ca-en/cloud/cloud-native/container-engine-kubernetes/), you can get a powerful 4C24G (ARM Yes!) cluster in no time.
 
-##### Hosted Database
+##### Postgres Hosting
 
-- [Supabase](https://supabase.com/pricing) free plan offers fully functional PostgreSQL databases with storage up to 500MB
-- [Neon](https://neon.tech/pricing) free plan offers serverless PostgreSQL databases with storage up to 0.5GiB
-- [Xata](https://xata.io/pricing) free plan offers serverless PostgreSQL databases with storage up to 15GiB
+- [Aiven for PostgreSQL](https://aiven.io/pricing?product=pg) free plan offers 5GiB of storage and 20 concurrent connections
+- [Tembo](https://tembo.io/pricing/) free plan offers 10GiB of storage
+- [Xata](https://xata.io/pricing) free plan offers 15GiB of storage
+
+##### Redis Hosting
+
+- [Aiven for Valkey](https://aiven.io/pricing?product=valkey) free plan offers 1GiB of RAM
 
 ##### Image Hosting
 
