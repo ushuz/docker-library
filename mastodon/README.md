@@ -46,7 +46,6 @@ Ideal for a tiny Mastodon instance that typically serves less than 5 users.
 ##### Postgres Hosting
 
 - [Aiven for PostgreSQL](https://aiven.io/pricing?product=pg) free plan offers 5GiB of storage and 20 concurrent connections
-- [Tembo](https://tembo.io/pricing/) free plan offers 10GiB of storage
 - [Xata](https://xata.io/pricing) free plan offers 15GiB of storage
 
 ##### Redis Hosting
