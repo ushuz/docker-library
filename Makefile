@@ -5,15 +5,11 @@ grpcc:
 
 halbot: VERSION ?= 1989.6.38
 halbot:
-	docker builder use multiarch
-	docker build skynet/ --build-arg VERSION=$(VERSION) -t ushuz/halbot:$(VERSION) -t ushuz/halbot:latest --platform linux/amd64,linux/arm64 --push
-	docker builder use default
+	docker build skynet/ --builder multiarch --build-arg VERSION=$(VERSION) -t ushuz/halbot:$(VERSION) -t ushuz/halbot:latest --platform linux/amd64,linux/arm64 --push
 
 kubectl: VERSION ?= 1.28.4
 kubectl:
-	docker builder use multiarch
-	docker build kubectl/ --build-arg KUBECTL_VERSION=v$(VERSION) -t ushuz/kubectl:$(VERSION) --platform linux/amd64,linux/arm64 --push
-	docker builder use default
+	docker build kubectl/ --builder multiarch --build-arg KUBECTL_VERSION=v$(VERSION) -t ushuz/kubectl:$(VERSION) --platform linux/amd64,linux/arm64 --push
 
 mycli: VERSION ?= 1.18.2
 mycli:
