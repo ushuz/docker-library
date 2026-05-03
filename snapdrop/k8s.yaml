@@ -21,12 +21,12 @@ spec:
     spec:
       containers:
       - name: snapdrop-ui
-        image: ushuz/snapdrop:ui
+        image: docker.io/ushuz/snapdrop:ui
         imagePullPolicy: Always
         ports:
         - containerPort: 80
       - name: snapdrop-backend
-        image: ushuz/snapdrop:backend
+        image: docker.io/ushuz/snapdrop:backend
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
